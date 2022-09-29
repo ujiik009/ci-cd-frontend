@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_IMAGE = ''
+    }
     triggers {
         githubPush()
     }  
@@ -10,22 +13,23 @@ pipeline {
                 echo '******************************'
             }
         }
-        stage('Yarn Install') {
-            steps {
-                echo 'Yarn Install'
+        stage('Docker Build') {
+            agent any
+            steps{
+                echo 'Docker Build'
                 echo '******************************'
-            }
-        }
-        stage('Yarn Build') {
-            steps {
-                echo 'Yarn Build'
-                echo '******************************'
+                script {
+                  DOCKER_IMAGE = docker.build "frontend:latest"
+                }
             }
         }
         stage('Deploy') {
             steps{
                 echo 'Deploy'
                 echo '******************************'
+                script{
+                    echo $DOCKER_IMAGE
+                }
             }
         }
     }
