@@ -27,9 +27,7 @@ pipeline {
             steps{
                 echo 'Deploy'
                 echo '******************************'
-                script{
-                    docker run start -p 80:80 frontend:latest
-                }
+                sh 'docker run start -p 8888:80 frontend:latest'
             }
         }
     }
