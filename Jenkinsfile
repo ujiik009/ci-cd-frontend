@@ -1,9 +1,36 @@
 pipeline {
-    agent { docker { image 'nginx:1.22-alpine' } }
+    
+    agent any  
+ 
     stages {
-        stage('build') {
+ 
+        stage('Init'){
             steps {
-                sh 'echo "build started"'
+                echo 'Init'
+                echo '******************************'
+            }
+        }
+ 
+        stage('Yarn Install') {
+            steps {
+                echo 'Yarn Install'
+                echo '******************************'
+            }
+        }
+ 
+        stage('Yarn Build') {
+            steps {
+                echo 'Yarn Build'
+                echo '******************************'
+            }
+        }
+ 
+        ...
+ 
+        stage('Deploy') {
+            steps{
+                echo 'Deploy'
+                echo '******************************'
             }
         }
     }
