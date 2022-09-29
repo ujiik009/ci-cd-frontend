@@ -28,7 +28,7 @@ pipeline {
                 echo 'Deploy'
                 echo '******************************'
                 script{
-                    echo $DOCKER_IMAGE
+                    echo "Deploy is done"
                 }
             }
         }
