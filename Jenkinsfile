@@ -1,5 +1,8 @@
 pipeline {
-    agent any  
+    agent any
+    triggers {
+        githubPush()
+    }  
     stages {
         stage('Init ENV'){
             steps {
