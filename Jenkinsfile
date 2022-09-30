@@ -11,7 +11,6 @@ pipeline {
             steps {
                 echo 'Init'
                 echo '******************************'
-                sh 'echo $TAG_NAME'
             }
         }
         stage('Docker Build') {
@@ -33,9 +32,16 @@ pipeline {
             }
         }
         stage('Deploy Production') {
-            when { tag "*" }
             steps {
-                echo 'Deploying only because this commit is tagged...'
+                echo 'Deploying only because this commit is tagged...',
+                script {                                                    
+                    if (env.TAG_NAME) {                                       
+                        echo "triggered by the TAG:"                                 
+                        echo env.TAG_NAME                                       
+                    } else {                                                  
+                        echo "triggered by branch, PR or ..."                              
+                    }                                                         
+                }    
             }
         }
         
