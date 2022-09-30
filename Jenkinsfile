@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Deploy Production') {
             steps {
-                echo 'Deploying only because this commit is tagged...',
+                echo 'Deploying only because this commit is tagged...'
                 script {                                                    
                     if (env.TAG_NAME) {                                       
                         echo "triggered by the TAG:"                                 
@@ -43,7 +43,6 @@ pipeline {
                     }                                                         
                 }    
             }
-        }
-        
+        }        
     }
 }
