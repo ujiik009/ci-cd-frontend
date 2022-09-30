@@ -11,6 +11,7 @@ pipeline {
             steps {
                 echo 'Init'
                 echo '******************************'
+                sh 'echo $TAG_NAME'
             }
         }
         stage('Docker Build') {
