@@ -32,5 +32,12 @@ pipeline {
                 sh 'docker run -p 8888:80 -d --name frontend frontend:latest'
             }
         }
+        stage('Deploy Production') {
+            when { tag "*" }
+            steps {
+                echo 'Deploying only because this commit is tagged...'
+            }
+        }
+        
     }
 }
